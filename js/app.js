@@ -40,7 +40,6 @@ Enemy.prototype.reset = function() {
 }
 
 /*************** Mode section ***************/
-
 var score = 0;
 
 // Set mode (easy, medium, hard) depending on score and display appropriate alert message
