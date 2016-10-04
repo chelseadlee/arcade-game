@@ -25,7 +25,7 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    var currentMode = setMode();
+    var currentMode = new Mode();
 
     canvas.width = 505;
     canvas.height = 606;
@@ -68,6 +68,7 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
+        setMode();
         main();
     }
 

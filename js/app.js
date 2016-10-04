@@ -24,7 +24,15 @@ Enemy.prototype.update = function(dt) {
 };
 
 var setMode = function() {
-    return new Mode();
+    if (score < 5) {
+        currentMode.easy();
+    } else if (score < 10) {
+        currentMode.medium();
+    } else if (score < 20) {
+        setMode();
+    } else if (score === 20) {
+        console.log("you win!");
+    }
 };
 
 var Mode = function(){
@@ -36,9 +44,27 @@ var Mode = function(){
 
     var enemy4 = new Enemy(-180,60);
 
-    this.allEnemies = [enemy1, enemy2, enemy3, enemy4];
+    var enemy5 = new Enemy(-200,230);
+
+    var enemy6 = new Enemy(-20,145);
+
+    var enemy7 = new Enemy(-90,145);
+
+    var enemy8 = new Enemy(-280,60);
+
+    this.easyEnemies = [enemy1, enemy2, enemy3, enemy4];
+    this.mediumEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8];
+
+    this.allEnemies = [];
 };
 
+Mode.prototype.easy = function(){
+    this.allEnemies = this.easyEnemies;
+};
+
+Mode.prototype.medium = function(){
+    this.allEnemies = this.mediumEnemies;
+};
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -73,6 +99,7 @@ Player.prototype.checkWin = function() {
 };
 
 Player.prototype.update = function(){
+    setMode();
     this.checkWin();
     this.handleInput();
     this.checkCollisions();
