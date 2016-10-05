@@ -129,7 +129,7 @@ var Player = function(x, y) {
 // Reset player starting position
 Player.prototype.reset = function() {
     this.x = 200;
-    this.y = 435;
+    this.y = 400;
 };
 
 // Check to see if player makes it to water
@@ -149,20 +149,21 @@ Player.prototype.update = function() {
 };
 
 Player.prototype.handleInput = function(direction) {
-    var movement = 50;
+    var hMovement = 101;
+    var vMovement = 83;
 
     switch (direction) {
         case 'left':
-            this.x = this.x - movement > 0 ? this.x - movement : -10;
+            this.x = this.x - hMovement > 0 ? this.x - hMovement : -10;
             break;
         case 'right':
-            this.x = this.x + movement < 410 ? this.x + movement : 410;
+            this.x = this.x + hMovement < 410 ? this.x + hMovement : 410;
             break;
         case 'down':
-            this.y = this.y + movement < 435 ? this.y + movement : 435;
+            this.y = this.y + vMovement < 435 ? this.y + vMovement : 435;
             break;
         case 'up':
-            this.y = this.y - movement > -10 ? this.y - movement : -10;
+            this.y = this.y - vMovement > -10 ? this.y - vMovement : -10;
             break;
     }
 };
@@ -175,12 +176,12 @@ Player.prototype.checkCollisions = function() {
         var playerWidth = 50;
         var spriteHeight = 45;
         var spriteWidth = 60;
-        if (currentMode.allEnemies[enemy].x < player.x + playerWidth &&
-            currentMode.allEnemies[enemy].x + spriteWidth > player.x &&
-            currentMode.allEnemies[enemy].y < player.y + playerHeight &&
-            spriteHeight + currentMode.allEnemies[enemy].y > player.y) {
+        if (currentMode.allEnemies[enemy].x < this.x + playerWidth &&
+            currentMode.allEnemies[enemy].x + spriteWidth > this.x &&
+            currentMode.allEnemies[enemy].y < this.y + playerHeight &&
+            spriteHeight + currentMode.allEnemies[enemy].y > this.y) {
             console.log("collision");
-            player.reset();
+            this.reset();
 
             // Penalty: score is reduced
             score--;
@@ -200,7 +201,7 @@ Player.prototype.render = function() {
 };
 
 // Instantiate Player object
-var player = new Player(200, 435);
+var player = new Player(200, 400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
