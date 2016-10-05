@@ -12,7 +12,7 @@ var Enemy = function(x, y) {
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Set enemy speed to random number
+// Set enemy speed using random number generator
 Enemy.prototype.setSpeed = function(min, max) {
     this.speed = Math.floor(Math.random() * (max - min + 1)) + min;
 };
