@@ -13,7 +13,7 @@ Fork Repository and open index.html in any browser.
 * Use the arrow keys to move up, down, left, or right. Avoid the bugs and get to the water.
 * Each time you cross to the water, you gain one point. After 20 points, you win the game.
 
-### Built With
+## Built With
 * HTML5 Canvas
 * Javascript
 
